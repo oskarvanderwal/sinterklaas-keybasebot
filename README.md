@@ -1,6 +1,8 @@
 # sinterklaas-keybasebot
 Code for running a simple Keybase bot that generates Sinterklaas poems on command.
 
+![](https://oskarvanderwal.keybase.pub/sinterklaas/Peek%202020-03-13%2013-47__2.gif)
+
 ## Quick-Start
 
 ```
