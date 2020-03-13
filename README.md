@@ -1,5 +1,5 @@
 # sinterklaas-keybasebot
-Code for running a simple KeyBase bot that generates Sinterklaas poems on command.
+Code for running a simple Keybase bot that generates Sinterklaas poems on command.
 
 ## Quick-Start
 
