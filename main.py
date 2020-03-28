@@ -35,7 +35,7 @@ def get_message(inittext, memory_len=5):
             
         (message, end_poem) = textgenerator.generate_sentence(text)
         iteration += 1
-        if iteration > 5:
+        if iteration > 200:
             end_poem = True
         
         message = message.replace('/','').strip()
@@ -43,23 +43,27 @@ def get_message(inittext, memory_len=5):
     return " ".join(textlist)
     
  class Handler:
+    def __init__(self):
+        self.lock = asyncio.Lock()
+        
     async def __call__(self, bot, event):
-        channel = event.msg.channel
-        msg_id = event.msg.id
-        if event.msg.content.type_name == 'text':
-            if event.msg.content.text.body.startswith('!sinterklaas'):
-                sentence = event.msg.content.text.body.split()[1:]
-                if not sentence:
-                    sentence = ["Beste"]
-                await bot.chat.send(channel, "Sint: even denken...")
-                poem = get_message(" ".join(sentence))
-                await bot.chat.send(channel, poem)
+        async with self.lock:
+            channel = event.msg.channel
+            msg_id = event.msg.id
+            if event.msg.content.type_name == 'text':
+                if event.msg.content.text.body.startswith('!sinterklaas'):
+                    sentence = event.msg.content.text.body.split()[1:]
+                    if not sentence:
+                        sentence = ["Beste"]
+                    await bot.chat.send(channel, "Sint: even denken...")
+                    poem = get_message(" ".join(sentence))
+                    await bot.chat.send(channel, poem)
 
 
 listen_options = {
     "local": True,
-    "wallet": True,
-    "dev": True,
+    "wallet": False,
+    "dev": False,
     "hide-exploding": False,
     "convs": True,
     "filter_channel": None,
