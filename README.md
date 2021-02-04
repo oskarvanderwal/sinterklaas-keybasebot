@@ -10,7 +10,7 @@ Make sure you have a [GPT-2 model](https://huggingface.co/transformers/model_doc
 Make sure you have all the dependencies installed, for example through:
 
 ```
-python m venv .venv
+python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
